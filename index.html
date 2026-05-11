@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <title>JesVion | Full-Stack Developer</title>
+    <!-- Google Fonts + Font Awesome 6 (free) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: #fefefe;
+        color: #1f1f2b;
+        line-height: 1.5;
+        scroll-behavior: smooth;
+      }
+
+      /* container utility */
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+
+      /* header & navigation */
+      .site-header {
+        background: rgba(255, 255, 255, 0.96);
+        backdrop-filter: blur(0px);
+        box-shadow:
+          0 1px 2px rgba(0, 0, 0, 0.03),
+          0 1px 6px rgba(0, 0, 0, 0.05);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+      }
+
+      .header-flex {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 1rem 0;
+        gap: 1rem;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        background: linear-gradient(135deg, #1e2a5e, #4a3a8c);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .nav-menu ul {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        font-weight: 600;
+        color: #2c2c3a;
+        transition: 0.2s ease;
+        font-size: 1rem;
+      }
+
+      .nav-menu a:hover {
+        color: #5b4bca;
+      }
+
+      .nav-menu .contact-btn {
+        background: #1f1f2b;
+        color: white;
+        padding: 0.5rem 1.4rem;
+        border-radius: 40px;
+        transition: 0.2s;
+      }
+
+      .nav-menu .contact-btn:hover {
+        background: #5b4bca;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* buttons & global */
+      .btn-primary {
+        display: inline-block;
+        background: #1f1f2b;
+        color: white;
+        padding: 0.8rem 1.8rem;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: 0.2s ease;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+      }
+
+      .btn-primary:hover {
+        background: #5b4bca;
+        transform: translateY(-3px);
+        box-shadow: 0 12px 20px -12px rgba(91, 75, 202, 0.4);
+      }
+
+      .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        position: relative;
+        display: inline-block;
+        letter-spacing: -0.01em;
+      }
+
+      .section-title:after {
+        content: "";
+        position: absolute;
+        bottom: -12px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: #5b4bca;
+        border-radius: 4px;
+      }
+
+      /* Hero section */
+      .hero {
+        padding: 3rem 0 4rem 0;
+      }
+
+      .hero-grid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .hero-content {
+        flex: 1.2;
+        min-width: 260px;
+      }
+
+      .hero-badge {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #5b4bca;
+        background: #edeaff;
+        display: inline-block;
+        padding: 0.3rem 1rem;
+        border-radius: 40px;
+        margin-bottom: 1.2rem;
+      }
+
+      .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+        background: linear-gradient(to right, #1e2a5e, #3b2c6b);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+      }
+
+      .hero-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #4a4a5a;
+        margin-bottom: 1.2rem;
+      }
+
+      .hero-desc {
+        font-size: 1rem;
+        color: #4b4b5a;
+        margin-bottom: 2rem;
+        max-width: 500px;
+      }
+
+      .hero-image {
+        flex: 0.8;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image-frame {
+        width: 280px;
+        height: 280px;
+        border-radius: 50%;
+        overflow: hidden;
+        box-shadow: 0 25px 35px -18px rgba(0, 0, 0, 0.2);
+        background: #f0edfe;
+        transition: transform 0.3s ease;
+        border: 4px solid white;
+      }
+
+      .image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* about + skills grid */
+      .about-section {
+        padding: 4rem 0;
+        background: #faf9ff;
+      }
+
+      .about-grid {
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+      }
+
+      .about-text {
+        flex: 1.5;
+      }
+
+      .about-text p {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+        color: #2d2d3a;
+      }
+
+      .personal-info {
+        display: flex;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+        flex-wrap: wrap;
+      }
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 60px;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+      }
+
+      .info-item i {
+        color: #5b4bca;
+        font-size: 1.1rem;
+      }
+
+      .skills-showcase {
+        flex: 1;
+      }
+
+      .skill-tag {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 1rem;
+      }
+
+      .skill-tag span {
+        background: white;
+        padding: 0.6rem 1.2rem;
+        border-radius: 40px;
+        font-weight: 500;
+        font-size: 0.9rem;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        transition: all 0.2s;
+      }
+
+      .skill-tag span:hover {
+        background: #5b4bca;
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Portfolio cards */
+      .portfolio-section {
+        padding: 4rem 0;
+      }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 1rem;
+      }
+
+      .project-card {
+        background: white;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.1);
+        transition: all 0.25s ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 24px 36px -16px rgba(0, 0, 0, 0.15);
+      }
+
+      .card-img {
+        background: #e9e6fc;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: #5b4bca;
+      }
+
+      .card-info {
+        padding: 1.5rem;
+      }
+
+      .card-info h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .card-info p {
+        color: #5a5a6e;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+
+      .tech-stack {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+
+      .tech-stack span {
+        background: #f0eefb;
+        padding: 0.2rem 0.8rem;
+        border-radius: 30px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+
+      /* contact section */
+      .contact-section {
+        padding: 4rem 0;
+        background: #faf9ff;
+      }
+
+      .contact-wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+      }
+
+      .contact-left {
+        flex: 1;
+      }
+
+      .contact-left p {
+        margin: 1rem 0 1.5rem 0;
+      }
+
+      .contact-details {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        font-size: 1rem;
+      }
+
+      .contact-item i {
+        width: 32px;
+        font-size: 1.3rem;
+        color: #5b4bca;
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 1.2rem;
+        margin-top: 1rem;
+      }
+
+      .social-icons a {
+        background: white;
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        color: #1f1f2b;
+        font-size: 1.3rem;
+        transition: 0.2s;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      }
+
+      .social-icons a:hover {
+        background: #5b4bca;
+        color: white;
+        transform: translateY(-4px);
+      }
+
+      .contact-right {
+        flex: 1;
+        background: white;
+        padding: 2rem;
+        border-radius: 2rem;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
+      }
+
+      .form-group {
+        margin-bottom: 1.2rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border: 1px solid #e2e2ec;
+        border-radius: 1rem;
+        font-family: "Inter", sans-serif;
+        background: #fff;
+        transition: border 0.2s;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        border-color: #5b4bca;
+        box-shadow: 0 0 0 3px rgba(91, 75, 202, 0.1);
+      }
+
+      textarea {
+        resize: vertical;
+        min-height: 110px;
+      }
+
+      button[type="submit"] {
+        background: #1f1f2b;
+        border: none;
+        width: 100%;
+        padding: 0.9rem;
+        font-size: 1rem;
+        font-weight: 600;
+        border-radius: 2rem;
+        cursor: pointer;
+      }
+
+      footer {
+        background: #111118;
+        color: #b3b3cc;
+        text-align: center;
+        padding: 2rem 0;
+        font-size: 0.85rem;
+      }
+
+      /* responsive */
+      @media (max-width: 900px) {
+        .hero-grid {
+          flex-direction: column-reverse;
+          text-align: center;
+        }
+        .hero-content {
+          text-align: center;
+        }
+        .hero-content h1 {
+          font-size: 2.6rem;
+        }
+        .section-title:after {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        .section-title {
+          text-align: center;
+          display: block;
+        }
+        .about-grid {
+          flex-direction: column;
+        }
+        .contact-wrapper {
+          flex-direction: column;
+        }
+        .header-flex {
+          flex-direction: column;
+        }
+        .nav-menu ul {
+          justify-content: center;
+        }
+        .hero-desc {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+
+      @media (max-width: 520px) {
+        .container {
+          padding: 0 20px;
+        }
+        .hero-content h1 {
+          font-size: 2rem;
+        }
+        .nav-menu ul {
+          gap: 1rem;
+        }
+        .image-frame {
+          width: 220px;
+          height: 220px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-flex">
+        <div class="logo">JesVion</div>
+        <nav class="nav-menu">
+          <ul>
+            <li><a href="#about">About me</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li>
+              <a
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=jesvion42@gmail.com"
+                target="_blank"
+                rel="noopener"
+                class="contact-btn"
+                >CONTACT ME</a
+              >
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content">
+            <div class="hero-badge">Full-Stack Developer</div>
+            <h1>Hi, I am <br />JesVion</h1>
+            <div class="hero-title">Full-Stack Developer</div>
+            <p class="hero-desc">
+              I build clean, reliable web apps—from idea to deployment. I focus
+              on strong fundamentals, clear communication, and consistent
+              delivery.
+            </p>
+            <a
+              href="https://mail.google.com/mail/?view=cm&fs=1&to=jesvion42@gmail.com"
+              target="_blank"
+              rel="noopener"
+              class="btn-primary"
+              >Let’s talk <i class="fas fa-arrow-right"></i
+            ></a>
+          </div>
+          <div class="hero-image">
+            <div class="image-frame">
+              <img
+                src="./images//JesVion.png"
+                alt="JesVion profile"
+                id="profile-img"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About me section -->
+      <section id="about" class="about-section">
+        <div class="container">
+          <h2 class="section-title">About me</h2>
+          <div class="about-grid">
+            <div class="about-text">
+              <p>
+                I'm Jesvion, a full-stack developer who enjoys building products
+                that are easy to use and simple to maintain. I believe strong
+                engineering and clear collaboration lead to real results.
+              </p>
+              <p>
+                I work with teams to turn requirements into working features,
+                connect clean front ends to solid back ends, and deliver web
+                apps that perform and scale.
+              </p>
+              <div class="personal-info">
+                <div class="info-item">
+                  <i class="fas fa-calendar-alt"></i> <span>Full-stack</span>
+                </div>
+              </div>
+            </div>
+            <div class="skills-showcase" id="skills">
+              <h3
+                style="font-size: 1.6rem; margin-bottom: 1rem; font-weight: 600"
+              >
+                Core expertise
+              </h3>
+              <div class="skill-tag">
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>Bootstrap</span>
+                <span>React</span>
+                <span>Python</span>
+                <span>SQL</span>
+                <span>Django</span>
+                <span>Django REST Framework</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact me section -->
+      <section id="contact" class="contact-section">
+        <div class="container">
+          <h2 class="section-title">Let's work together</h2>
+          <div class="contact-wrapper">
+            <div class="contact-left" id="contact">
+              <p>
+                Got a project in mind or just want to say hello? I'm always open
+                to discussing new opportunities and collaborating as a team.
+              </p>
+              <div class="contact-details">
+                <div class="contact-item">
+                  <i class="fas fa-phone-alt"></i>
+                  <a
+                    href="tel:+2348119040363"
+                    style="text-decoration: none; color: inherit"
+                    >+2348119040363</a
+                  >
+                </div>
+                <div class="contact-item">
+                  <i class="fas fa-envelope"></i>
+                  <a
+                    href="mailto:jesvion42@gmail.com"
+                    style="text-decoration: none; color: inherit"
+                    >jesvion42@gmail.com</a
+                  >
+                </div>
+              </div>
+              <div class="social-icons">
+                <a
+                  href="https://github.com/JesVion"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="GitHub"
+                  ><i class="fab fa-github"></i
+                ></a>
+
+                <a
+                  href="https://mail.google.com/mail/?view=cm&fs=1&to=jesvion42@gmail.com"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Gmail"
+                >
+                  <i class="fas fa-envelope"></i>
+                </a>
+
+                <a href="#" aria-label="LinkedIn"
+                  ><i class="fab fa-linkedin-in"></i
+                ></a>
+                <a href="#" aria-label="Dribbble"
+                  ><i class="fab fa-dribbble"></i
+                ></a>
+                <a
+                  href="https://x.com/Emmanuelol64665"
+                  target="_blank"
+                  rel="noopener"
+                  aria-label="Twitter / X"
+                >
+                  <i class="fab fa-twitter"></i>
+                </a>
+              </div>
+            </div>
+            <div class="contact-right">
+              <form id="demo-contact-form" action="#" method="post">
+                <div class="form-group">
+                  <input type="text" placeholder="Your name" required />
+                </div>
+                <div class="form-group">
+                  <input type="email" placeholder="Email address" required />
+                </div>
+                <div class="form-group">
+                  <textarea
+                    placeholder="Tell me about your project..."
+                  ></textarea>
+                </div>
+                <button
+                  type="submit"
+                  class="btn-primary"
+                  style="background: #5b4bca; width: 100%"
+                >
+                  Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+                <p
+                  style="
+                    font-size: 0.7rem;
+                    margin-top: 1rem;
+                    text-align: center;
+                  "
+                >
+                  *Demo contact (no data stored)
+                </p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>© 2026 JesVion — Full-Stack Developer</p>
+      </div>
+    </footer>
+
+    <script>
+      (function () {
+        const contactForm = document.getElementById("demo-contact-form");
+        if (!contactForm) return;
+
+        const gmailTo = "jesvion42@gmail.com";
+        const phoneNumber = "2348119040363";
+
+        contactForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const nameInput = contactForm.querySelector('input[type="text"]');
+          const emailInput = contactForm.querySelector('input[type="email"]');
+          const textarea = contactForm.querySelector("textarea");
+
+          const name = (
+            nameInput && nameInput.value ? nameInput.value : ""
+          ).trim();
+          const email = (
+            emailInput && emailInput.value ? emailInput.value : ""
+          ).trim();
+          const message = (
+            textarea && textarea.value ? textarea.value : ""
+          ).trim();
+
+          const lines = [];
+          lines.push("Hi JesVion ");
+          if (name) lines.push("Name: " + name);
+          if (email) lines.push("Email: " + email);
+          if (message) lines.push("Message: " + message);
+
+          const text = encodeURIComponent(lines.join("\n"));
+
+          // Gmail compose (opens Gmail with prefilled message)
+          const subject = encodeURIComponent(
+            "Project inquiry from portfolio contact form",
+          );
+          const gmailUrl =
+            "https://mail.google.com/mail/?view=cm&fs=1&to=" +
+            encodeURIComponent(gmailTo) +
+            "&su=" +
+            subject +
+            "&body=" +
+            encodeURIComponent(lines.join("\n"));
+
+          window.open(gmailUrl, "_blank", "noopener");
+
+          contactForm.reset();
+        });
+      })();
+    </script>
+  </body>
+</html>
